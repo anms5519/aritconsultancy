@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AR Digital IT Service - Your Digital Growth Partner in Dhaka. Expert in Facebook Ads, Instagram Ads, SEO, Google Ads, Website Development &amp; Branding.">
+  <meta name="keywords" content="digital marketing dhaka, facebook ads bangladesh, seo services dhaka, website development bangladesh, google ads, ar digital it service">
+  <meta name="author" content="AR Digital IT Service">
+  <title>AR Digital IT Service | Your Digital Growth Partner in Dhaka</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="AR Digital IT Service | Your Digital Expert">
+  <meta property="og:description" content="Grow your business with Facebook Ads, SEO, Websites &amp; Digital Marketing in Dhaka.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aritconsultancy.com">
+  <meta property="og:image" content="https://picsum.photos/id/1015/1200/630">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://picsum.photos/id/1015/32/32" type="image/png">
+
+  <script>
+    tailwind.config = {
+      content: [],
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .hero-bg { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://picsum.photos/id/1015/1920/1080'); }
+    .service-card:hover { transform: translateY(-10px); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center font-bold text-2xl">AR</div>
+        <div>
+          <span class="font-bold text-2xl tracking-tight">AR Digital</span>
+        </div>
+      </div>
+
+      <div id="nav-links" class="hidden md:flex space-x-8 text-lg font-medium">
+        <a href="#home" class="hover:text-indigo-600 transition">Home</a>
+        <a href="#about" class="hover:text-indigo-600 transition">About</a>
+        <a href="#services" class="hover:text-indigo-600 transition">Services</a>
+        <a href="#portfolio" class="hover:text-indigo-600 transition">Portfolio</a>
+        <a href="#contact" class="hover:text-indigo-600 transition">Contact</a>
+      </div>
+
+      <button onclick="toggleMenu()" class="md:hidden text-3xl">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+      <div class="flex flex-col px-6 py-4 space-y-4 text-lg">
+        <a href="#home" class="hover:text-indigo-600" onclick="toggleMenu()">Home</a>
+        <a href="#about" class="hover:text-indigo-600" onclick="toggleMenu()">About</a>
+        <a href="#services" class="hover:text-indigo-600" onclick="toggleMenu()">Services</a>
+        <a href="#portfolio" class="hover:text-indigo-600" onclick="toggleMenu()">Portfolio</a>
+        <a href="#contact" class="hover:text-indigo-600" onclick="toggleMenu()">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero-bg h-screen flex items-center text-white">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
+        Your Digital<br><span class="text-indigo-400">Growth Partner</span>
+      </h1>
+      <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto">
+        Facebook & Instagram Ads • SEO • Google Ads • Website Development • Branding
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 px-10 py-4 rounded-2xl text-lg font-semibold transition">Get Free Consultation</a>
+        <a href="#services" class="border-2 border-white hover:bg-white hover:text-gray-900 px-10 py-4 rounded-2xl text-lg font-semibold transition">See Our Services</a>
+      </div>
+      <div class="mt-12 text-sm opacity-75">🏠 Dhaka, Bangladesh • Serving businesses across Bangladesh</div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-4xl font-bold mb-6">We are <span class="text-indigo-600">AR Digital IT Service</span></h2>
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Your trusted digital expert in Dhaka. We don't just run ads; we build brands that grow.
+          From high-converting Facebook & Instagram campaigns to professional websites and SEO,
+          we help Bangladeshi businesses dominate online.
+        </p>
+        <div class="mt-8 grid grid-cols-3 gap-6 text-center">
+          <div><div class="text-3xl font-bold text-indigo-600">50+</div><div class="text-sm text-gray-500">Projects Delivered</div></div>
+          <div><div class="text-3xl font-bold text-indigo-600">98%</div><div class="text-sm text-gray-500">Client Retention</div></div>
+          <div><div class="text-3xl font-bold text-indigo-600">2024</div><div class="text-sm text-gray-500">Est. in Dhaka</div></div>
+        </div>
+      </div>
+      <div class="relative">
+        <img src="https://picsum.photos/id/1015/600/500" alt="AR Digital IT Service Team in Dhaka" class="rounded-3xl shadow-2xl">
+        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-check-circle text-green-500 text-3xl"></i>
+            <div>
+              <p class="font-semibold">Meta Partner Agency</p>
+              <p class="text-sm text-gray-500">Official Advertising Partner</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-24 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-3">Our Services</h2>
+        <p class="text-xl text-gray-600">Everything you need to grow your business online</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="bg-white p-8 rounded-3xl shadow-xl service-card transition-all">
+          <i class="fa-solid fa-bullhorn text-5xl text-indigo-600 mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-3">Meta Ads (FB + IG)</h3>
+          <p class="text-gray-600">High-ROI Facebook & Instagram advertising campaigns that convert.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="bg-white p-8 rounded-3xl shadow-xl service-card transition-all">
+          <i class="fa-solid fa-magnifying-glass text-5xl text-indigo-600 mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-3">SEO & Google Ads</h3>
+          <p class="text-gray-600">Rank higher on Google and dominate search results in Bangladesh.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-white p-8 rounded-3xl shadow-xl service-card transition-all">
+          <i class="fa-solid fa-globe text-5xl text-indigo-600 mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-3">Website Development</h3>
+          <p class="text-gray-600">Fast, modern, mobile-friendly websites & e-commerce stores.</p>
+        </div>
+        <!-- Card 4 -->
+        <div class="bg-white p-8 rounded-3xl shadow-xl service-card transition-all">
+          <i class="fa-solid fa-palette text-5xl text-indigo-600 mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-3">Branding & Design</h3>
+          <p class="text-gray-600">Logo, graphics, banners & complete brand identity.</p>
+        </div>
+        <!-- Card 5 -->
+        <div class="bg-white p-8 rounded-3xl shadow-xl service-card transition-all">
+          <i class="fa-solid fa-chart-line text-5xl text-indigo-600 mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-3">Social Media Management</h3>
+          <p class="text-gray-600">Daily content, engagement & growth strategies.</p>
+        </div>
+        <!-- Card 6 -->
+        <div class="bg-white p-8 rounded-3xl shadow-xl service-card transition-all">
+          <i class="fa-solid fa-gift text-5xl text-indigo-600 mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-3">Festive Campaigns</h3>
+          <p class="text-gray-600">Eid, Ramadan, Pohela Boishakh special marketing campaigns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-16">Recent Success Stories</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="group relative overflow-hidden rounded-3xl">
+          <img src="https://picsum.photos/id/237/600/400" alt="E-commerce Website Project" class="w-full h-80 object-cover transition group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+            <div class="text-white">
+              <p class="font-semibold">Fashion Store • 340% ROI</p>
+              <p class="text-sm opacity-75">Meta Ads + Website</p>
+            </div>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-3xl">
+          <img src="https://picsum.photos/id/201/600/400" alt="Restaurant Campaign" class="w-full h-80 object-cover transition group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+            <div class="text-white">
+              <p class="font-semibold">Restaurant • 12K Orders</p>
+              <p class="text-sm opacity-75">Ramadan Campaign</p>
+            </div>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-3xl">
+          <img src="https://picsum.photos/id/870/600/400" alt="Real Estate SEO" class="w-full h-80 object-cover transition group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+            <div class="text-white">
+              <p class="font-semibold">Real Estate • #1 Google Ranking</p>
+              <p class="text-sm opacity-75">SEO + Google Ads</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+      <div>
+        <h2 class="text-4xl font-bold mb-6">Let's Grow Your Business Together</h2>
+        <p class="text-xl text-gray-400 mb-8">Get a FREE strategy call + audit of your current digital presence.</p>
+        
+        <div class="space-y-6">
+          <div class="flex items-center gap-4">
+            <i class="fa-solid fa-location-dot text-3xl text-indigo-400"></i>
+            <div>Dhaka, Bangladesh</div>
+          </div>
+          <div class="flex items-center gap-4">
+            <i class="fa-solid fa-envelope text-3xl text-indigo-400"></i>
+            <div>info@aritconsultancy.com</div>
+          </div>
+          <div class="flex items-center gap-4">
+            <i class="fa-solid fa-phone text-3xl text-indigo-400"></i>
+            <div>+880 1XXX-XXXXXX (WhatsApp)</div>
+          </div>
+        </div>
+
+        <div class="mt-12 flex gap-6 text-3xl">
+          <a href="https://facebook.com/ARDigitalITService" target="_blank" class="hover:text-indigo-400"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://instagram.com/ar.digital_it_service" target="_blank" class="hover:text-indigo-400"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form action="https://formsubmit.co/YOUR-EMAIL-HERE@gmail.com" method="POST" class="space-y-6">
+        <input type="text" name="name" placeholder="Your Name" required class="w-full px-6 py-4 bg-gray-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <input type="email" name="email" placeholder="Business Email" required class="w-full px-6 py-4 bg-gray-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <select name="service" class="w-full px-6 py-4 bg-gray-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <option value="">Select Service</option>
+          <option value="Meta Ads">Meta Ads (FB+IG)</option>
+          <option value="Website">Website Development</option>
+          <option value="SEO">SEO & Google Ads</option>
+          <option value="Branding">Branding</option>
+        </select>
+        <textarea name="message" rows="5" placeholder="Tell us about your business..." class="w-full px-6 py-4 bg-gray-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+        
+        <input type="hidden" name="_subject" value="New Lead from aritconsultancy.com">
+        <input type="hidden" name="_captcha" value="false">
+        
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 py-5 rounded-2xl font-semibold text-lg transition">
+          Send Message → Get Free Strategy
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-gray-400 py-12">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-sm">&copy; 2026 AR Digital IT Service. All Rights Reserved.</p>
+      <p class="text-xs mt-2">Proudly built for <a href="https://aritconsultancy.com" class="underline">aritconsultancy.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Form success message (after submit)
+    const form = document.querySelector('form');
+    form.addEventListener('submit', () => {
+      setTimeout(() => {
+        alert("✅ Thank you! We'll contact you within 24 hours.");
+      }, 800);
+    });
+  </script>
+</body>
+</html>

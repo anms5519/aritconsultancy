@@ -1,0 +1,17 @@
+# =============================================
+# robots.txt for aritconsultancy.com
+# =============================================
+
+User-agent: *
+Allow: /
+
+# Block unnecessary paths (optional but recommended)
+Disallow: /private/
+Disallow: /admin/
+Disallow: /temp/
+
+# Sitemap location
+Sitemap: https://aritconsultancy.com/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
