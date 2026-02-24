@@ -1,26 +1,105 @@
+:root {
+    /* Primary Info Blue */
+    --color-primary-lighter: #D9EDFE;
+    --color-primary-light: #8DBFFB;
+    --color-primary-main: #4285F4;
+    --color-primary-dark: #214BAF;
+    --color-primary-darker: #0C2375;
+    --color-primary-contrast: #FFFFFF;
+
+    /* Success Green */
+    --color-success-lighter: #DCFAD8;
+    --color-success-light: #86E48D;
+    --color-success-main: #34A853;
+    --color-success-dark: #1A7845;
+    --color-success-darker: #095038;
+
+    /* Warning Yellow */
+    --color-warning-lighter: #FEF9CC;
+    --color-warning-light: #FDE768;
+    --color-warning-main: #FBCC05;
+    --color-warning-dark: #B48B02;
+    --color-warning-darker: #785800;
+
+    /* Error Red */
+    --color-error-lighter: #FDE6D6;
+    --color-error-light: #F8A185;
+    --color-error-main: #EA4335;
+    --color-error-dark: #A81A27;
+    --color-error-darker: #700A23;
+
+    /* Grey Scale */
+    --color-grey-50: #F6FBFB;
+    --color-grey-100: #EDF7F7;
+    --color-grey-200: #DDEFEF;
+    --color-grey-300: #B9CFD1;
+    --color-grey-400: #8CA0A4;
+    --color-grey-500: #546368;
+    --color-grey-600: #3D5059;
+    --color-grey-700: #2A3E4A;
+    --color-grey-800: #1A2C3C;
+    --color-grey-900: #101F31;
+
+    /* Theme Variables - Dark (Default) */
+    --bg-body: var(--color-grey-900);
+    --text-body: var(--color-grey-100);
+    --text-muted: var(--color-grey-400);
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --bg-card-hover: rgba(255, 255, 255, 0.1);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+:root.light {
+    /* Theme Variables - Light */
+    --bg-body: var(--color-grey-50);
+    --text-body: var(--color-grey-900);
+    --text-muted: var(--color-grey-600);
+    --bg-card: #FFFFFF;
+    --bg-card-hover: var(--color-grey-100);
+    --border-color: var(--color-grey-200);
+    --shadow-color: rgba(66, 133, 244, 0.15);
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-body);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #0f172a;
+    background: var(--bg-body);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: var(--color-grey-600);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: var(--color-grey-500);
 }
 
 /* Glassmorphism Utilities */
 .glass {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-card);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+.glass-nav {
+    background: rgba(16, 31, 49, 0.85); /* Fixed dark for nav for now, or variable? */
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+:root.light .glass-nav {
+    background: rgba(255, 255, 255, 0.85);
 }
 
 /* Gradient Text */
@@ -28,7 +107,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(to right, #3b82f6, #06b6d4);
+    background-image: linear-gradient(to right, var(--color-primary-main), var(--color-primary-light));
 }
 
 /* Smooth Scroll Behavior */
@@ -49,10 +128,48 @@ html {
 
 /* Card Hover Effects */
 .service-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     transition: all 0.3s ease;
 }
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.2);
+    background: var(--bg-card-hover);
+    border-color: var(--color-primary-main);
+    box-shadow: 0 20px 40px -10px var(--shadow-color);
+}
+
+/* FAQ Accordion */
+.faq-item {
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.faq-header {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.faq-header:hover {
+    background-color: var(--bg-card-hover);
+}
+
+.faq-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+}
+
+.faq-item.active .faq-body {
+    max-height: 1000px; /* Arbitrary large height */
+    transition: max-height 0.5s ease-in-out;
+}
+
+.faq-icon {
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
 }
