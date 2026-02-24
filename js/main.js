@@ -1,124 +1,209 @@
 // Initialize AOS Animation
-AOS.init({
-    duration: 800,
-    easing: 'ease-out-cubic',
-    once: true,
-    offset: 50
+document.addEventListener('DOMContentLoaded', () => {
+    AOS.init({
+        duration: 800,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 50
+    });
+
+    // Initialize Managers
+    const themeManager = new ThemeManager();
+    const languageManager = new LanguageManager();
+    const faqManager = new FAQManager();
 });
 
+// =========================================
+// Theme Manager
+// =========================================
+class ThemeManager {
+    constructor() {
+        this.toggleBtn = document.getElementById('theme-toggle');
+        this.html = document.documentElement;
+        this.icon = this.toggleBtn ? this.toggleBtn.querySelector('i') : null;
+
+        // Load saved theme or default to dark
+        this.currentTheme = localStorage.getItem('theme') || 'dark';
+        this.applyTheme();
+
+        if (this.toggleBtn) {
+            this.toggleBtn.addEventListener('click', () => this.toggle());
+        }
+    }
+
+    toggle() {
+        this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', this.currentTheme);
+        this.applyTheme();
+    }
+
+    applyTheme() {
+        if (this.currentTheme === 'light') {
+            this.html.classList.add('light');
+            this.html.classList.remove('dark');
+            if (this.icon) this.icon.className = 'fa-solid fa-moon'; // Show moon in light mode
+        } else {
+            this.html.classList.remove('light');
+            this.html.classList.add('dark');
+            if (this.icon) this.icon.className = 'fa-solid fa-sun'; // Show sun in dark mode
+        }
+    }
+}
+
+// =========================================
+// Language Manager
+// =========================================
+class LanguageManager {
+    constructor() {
+        this.toggleBtn = document.getElementById('lang-toggle');
+        this.currentLang = localStorage.getItem('lang') || 'en';
+
+        // Initial render
+        this.updateContent();
+
+        if (this.toggleBtn) {
+            this.toggleBtn.addEventListener('click', () => this.toggle());
+        }
+    }
+
+    toggle() {
+        this.currentLang = this.currentLang === 'en' ? 'bn' : 'en';
+        localStorage.setItem('lang', this.currentLang);
+        this.updateContent();
+    }
+
+    updateContent() {
+        // Update Toggle Button Text
+        if (this.toggleBtn) {
+            this.toggleBtn.innerText = this.currentLang === 'en' ? 'EN / BN' : 'বাংলা / English';
+        }
+
+        // Update Fonts
+        if (this.currentLang === 'bn') {
+            document.body.classList.add('font-bengali');
+            document.documentElement.lang = 'bn';
+        } else {
+            document.body.classList.remove('font-bengali');
+            document.documentElement.lang = 'en';
+        }
+
+        // Update Text Content
+        const elements = document.querySelectorAll('[data-i18n]');
+
+        elements.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const translation = this.getNestedTranslation(key);
+
+            if (translation) {
+                // Handle HTML content if specified (use with caution)
+                if (el.hasAttribute('data-html')) {
+                    el.innerHTML = translation;
+                } else {
+                    el.textContent = translation;
+                }
+            }
+        });
+
+        // Update Placeholders
+        const inputs = document.querySelectorAll('[data-i18n-placeholder]');
+        inputs.forEach(input => {
+            const key = input.getAttribute('data-i18n-placeholder');
+            const translation = this.getNestedTranslation(key);
+            if (translation) {
+                input.placeholder = translation;
+            }
+        });
+    }
+
+    getNestedTranslation(key) {
+        if (typeof translations === 'undefined') return key;
+
+        return key.split('.').reduce((obj, k) => {
+            return obj && obj[k];
+        }, translations[this.currentLang]);
+    }
+}
+
+// =========================================
+// FAQ Manager
+// =========================================
+class FAQManager {
+    constructor() {
+        this.container = document.getElementById('faq-container');
+        if (!this.container) return;
+
+        this.initAccordion();
+    }
+
+    initAccordion() {
+        const items = document.querySelectorAll('.faq-item');
+
+        items.forEach(item => {
+            const header = item.querySelector('.faq-header');
+            header.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Close all others
+                items.forEach(i => {
+                    i.classList.remove('active');
+                    const icon = i.querySelector('.faq-icon');
+                    if(icon) icon.style.transform = 'rotate(0deg)';
+                    const body = i.querySelector('.faq-body');
+                    if(body) body.style.maxHeight = null;
+                });
+
+                // Toggle current
+                if (!isActive) {
+                    item.classList.add('active');
+                    const icon = item.querySelector('.faq-icon');
+                    if(icon) icon.style.transform = 'rotate(180deg)';
+                    const body = item.querySelector('.faq-body');
+                    if(body) body.style.maxHeight = body.scrollHeight + "px";
+                }
+            });
+        });
+    }
+}
+
+// =========================================
 // Navbar Scroll Effect
+// =========================================
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        navbar.classList.add('shadow-lg', 'bg-brand-dark/95');
-        navbar.classList.remove('bg-brand-dark/80');
+        navbar.classList.add('shadow-lg', 'glass-nav');
+        navbar.classList.remove('bg-transparent');
     } else {
-        navbar.classList.remove('shadow-lg', 'bg-brand-dark/95');
-        navbar.classList.add('bg-brand-dark/80');
+        navbar.classList.remove('shadow-lg', 'glass-nav');
+        navbar.classList.add('bg-transparent');
     }
 });
 
+// =========================================
 // Mobile Menu Toggle
+// =========================================
 const mobileBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 let isMenuOpen = false;
 
-mobileBtn.addEventListener('click', () => {
-    isMenuOpen = !isMenuOpen;
-    if (isMenuOpen) {
-        mobileMenu.classList.remove('hidden');
-        mobileBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
-    } else {
-        mobileMenu.classList.add('hidden');
-        mobileBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
-    }
-});
-
-// Close mobile menu when clicking a link
-document.querySelectorAll('#mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        isMenuOpen = false;
-        mobileMenu.classList.add('hidden');
-        mobileBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
-    });
-});
-
-// Language Toggle System
-const translations = {
-    en: {
-        nav_services: "Services",
-        nav_portfolio: "Portfolio",
-        nav_about: "About",
-        nav_audit: "Get Free Audit",
-        hero_title_1: "Smart Digital",
-        hero_title_2: "Solutions",
-        hero_desc: "Empowering businesses with data-driven strategies. We specialize in Meta Ads, SEO, and High-Performance Web Development.",
-        cta_start: "Start Growing Now",
-        cta_work: "View Our Work",
-        sec_expertise: "Our Expertise",
-        sec_expertise_desc: "Comprehensive digital services designed to scale your business from the ground up.",
-        contact_title: "Let's Discuss Your Project"
-    },
-    bn: {
-        nav_services: "সেবাসমূহ",
-        nav_portfolio: "পোর্টফোলিও",
-        nav_about: "আমাদের সম্পর্কে",
-        nav_audit: "ফ্রি অডিট নিন",
-        hero_title_1: "স্মার্ট ডিজিটাল",
-        hero_title_2: "সমাধান",
-        hero_desc: "আমরা আপনার ব্যবসাকে ডিজিটাল দুনিয়ায় এগিয়ে নিতে সাহায্য করি। মেটা অ্যাডস, এসইও এবং ওয়েব ডেভেলপমেন্টে আমরা বিশেষজ্ঞ।",
-        cta_start: "আজই শুরু করুন",
-        cta_work: "আমাদের কাজ দেখুন",
-        sec_expertise: "আমাদের দক্ষতা",
-        sec_expertise_desc: "আপনার ব্যবসাকে শূন্য থেকে শিখরে নিয়ে যাওয়ার জন্য পূর্ণাঙ্গ ডিজিটাল সেবা।",
-        contact_title: "আপনার প্রজেক্ট নিয়ে কথা বলুন"
-    }
-};
-
-let currentLang = 'en';
-const langToggle = document.getElementById('lang-toggle');
-
-// Helper to safely set text content if element exists
-const safeSetText = (selector, text) => {
-    const el = document.querySelector(selector);
-    if (el) el.innerText = text;
-};
-
-langToggle.addEventListener('click', () => {
-    currentLang = currentLang === 'en' ? 'bn' : 'en';
-    langToggle.innerText = currentLang === 'en' ? 'EN / BN' : 'বাংলা / English';
-
-    const t = translations[currentLang];
-
-    // Update Nav
-    // Note: This requires targeting specific elements. I'll need to add IDs or data-attributes to the HTML
-    // to make this robust. For now, I will use a simple text replacement on the body for demo purposes
-    // or select by specific selectors if I update the HTML.
-
-    // To do this properly without re-writing HTML, I will assume the structure is static.
-    // However, the best way is to update HTML with `data-i18n` attributes.
-    // Let's stick to the core task requirements first. The user asked for "great ui ux",
-    // functional language toggle is a "nice to have".
-    // I'll implement a simple swap for the visible Hero text which is the most impactful.
-
-    // Hero Title
-    const heroH1 = document.querySelector('h1');
-    if (heroH1) {
-        if (currentLang === 'bn') {
-            heroH1.innerHTML = `${t.hero_title_1}<br><span class="text-brand-500">${t.hero_title_2}</span>`;
+if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+            mobileMenu.classList.remove('hidden');
+            mobileBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
         } else {
-            heroH1.innerHTML = `${t.hero_title_1}<br><span class="text-brand-500">${t.hero_title_2}</span>`;
+            mobileMenu.classList.add('hidden');
+            mobileBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
         }
-    }
+    });
 
-    // Hero Desc
-    const heroP = document.querySelector('section.relative p.text-lg');
-    if (heroP) heroP.innerText = t.hero_desc;
-
-    // CTAs
-    const ctas = document.querySelectorAll('section.relative a');
-    if (ctas.length >= 2) {
-        ctas[0].innerHTML = `${t.cta_start} <i class="fa-solid fa-arrow-right"></i>`;
-        ctas[1].innerText = t.cta_work;
-    }
-});
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            isMenuOpen = false;
+            mobileMenu.classList.add('hidden');
+            mobileBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+        });
+    });
+}
