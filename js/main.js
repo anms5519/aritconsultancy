@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeManager = new ThemeManager();
     const languageManager = new LanguageManager();
     const faqManager = new FAQManager();
+    const scrollSpy = new ScrollSpy();
 });
 
 // =========================================
@@ -206,4 +207,64 @@ if (mobileBtn && mobileMenu) {
             mobileBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
         });
     });
+}
+
+// =========================================
+// ScrollSpy (Active Link Highlighting)
+// =========================================
+class ScrollSpy {
+    constructor() {
+        this.navLinks = document.querySelectorAll('.nav-item');
+        this.sections = [];
+
+        // Map links to sections
+        this.navLinks.forEach(link => {
+            const id = link.getAttribute('href');
+            if (id && id.startsWith('#')) {
+                const section = document.querySelector(id);
+                if (section) {
+                    this.sections.push({
+                        link: link,
+                        section: section
+                    });
+                }
+            }
+        });
+
+        this.initObserver();
+    }
+
+    initObserver() {
+        const options = {
+            root: null,
+            rootMargin: '-20% 0px -60% 0px', // Active when section is in the upper middle part of screen
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.setActive(entry.target);
+                }
+            });
+        }, options);
+
+        this.sections.forEach(item => {
+            observer.observe(item.section);
+        });
+    }
+
+    setActive(targetSection) {
+        this.sections.forEach(item => {
+            if (item.section === targetSection) {
+                // Add active styles
+                item.link.classList.remove('text-gray-300', 'after:w-0');
+                item.link.classList.add('text-brand-500', 'after:w-full');
+            } else {
+                // Remove active styles
+                item.link.classList.remove('text-brand-500', 'after:w-full');
+                item.link.classList.add('text-gray-300', 'after:w-0');
+            }
+        });
+    }
 }
